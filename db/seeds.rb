@@ -2,7 +2,7 @@ Song.destroy_all
 Artist.destroy_all
 
 # Artists
-artist1 = Artist.create!( name: "The National", bio: Faker::Lorem.sentence(50), image_url: "https://www.google.nl/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwj_0YD_6-_WAhUOJ1AKHfQbD0MQjRwIBw&url=http%3A%2F%2Fwww.npr.org%2Fartists%2F15161426%2Fthe-national&psig=AOvVaw1jXc8ftn4BqeB1CAiXM1jT&ust=1508061225511717" )
+artist1 = Artist.create!( name: "The National", bio: Faker::Lorem.sentence(50), remote_image_url_url: "http://res.cloudinary.com/dfg4uic75/image/upload/v1507977250/codaisseurify/grahammacindoe_thenational-b-w-iloveimg-converted-e39d092d528ef9b3ff9cacf15b4aacd1863d45ca-s800-c85.jpg" )
 
 # Songs
 song1 = Song.create!(name: "Fake Empire", album: "Boxes", release_year: 2000, artist: artist1)
