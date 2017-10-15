@@ -1,0 +1,9 @@
+<h1 class="h1">Artists:</h1>
+<div class="row">
+  <% @artists.each do |artist| %>
+    <div class="col-sm-4">
+      <h3 class="text-center"><%= link_to artist.name, artist_path(artist) %></h3>
+      <%= image_tag artist.image_url.thumbnail %>
+    </div>
+  <% end %>
+</div>

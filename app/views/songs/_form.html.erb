@@ -1,0 +1,21 @@
+<%= form_for [:artist, @song] do |f| %>
+  <div class="form-group">
+    <label>Name</label>
+    <%= f.text_field :name, placeholder: "Song name", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label>Album</label>
+    <%= f.text_field :album, placeholder: "Album", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label>Release</label>
+    <%= f.text_field :release_year, placeholder: "Release Year", class: "form-control" %>
+  </div>
+
+  <div class="actions">
+     <%= f.submit "Save", class: "btn btn-success" %>
+   </div>
+
+<% end %>

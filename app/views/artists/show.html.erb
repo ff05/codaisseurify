@@ -1,0 +1,46 @@
+  <h1><%= @artist.name %></h1>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= image_tag @artist.image_url, class: "img-responsive" %>
+    </div>
+    <div class="col-md-6">
+      <h3>About:</h3>
+      <p ><%= @artist.bio %></p>
+    </div>
+  </div>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Songs:</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table borderless">
+        <tr>
+          <th>Song</th>
+          <th>Album</th>
+          <th>Released</th>
+          <th></th>
+        </tr>
+        <% @songs.each do |song| %>
+        <tr>
+          <td><p><%= song.name %></p></td>
+          <td><p><%= song.album %></p></td>
+          <td><p><%= song.release_year %></p></td>
+          <td><%= link_to "Delete", artist_song_path(@artist.id, song.id), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><%= link_to "Add", new_artist_song_path(@artist), class: "btn btn-primary btn--incr-pad" %></td>
+        </tr>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  <%= link_to "back", artists_path, class: "pull-right btn btn-default" %>
