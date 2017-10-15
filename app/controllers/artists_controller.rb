@@ -1,6 +1,7 @@
 class ArtistsController < ApplicationController
   def index
     @artists = Artist.all
+    @artists_sort = Artist.sort_by_name
   end
 
   def show

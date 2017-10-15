@@ -6,4 +6,8 @@ class Artist < ApplicationRecord
   validates :name, presence: true
   validates :image_url, presence: true
   validates_length_of :image_url, maximum: 255
+
+  def self.sort_by_name
+    order :name
+  end
 end
