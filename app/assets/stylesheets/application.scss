@@ -1,6 +1,47 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/*+++++ Typography +++++*/
+.h1 { font-size: 48px; font-weight: 600; }
+h3 { font-weight: 600; text-transform: uppercase; margin: 0; padding-bottom: 20px; color: #000; }
+
+/*+++++ All Pages +++++*/
+section {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/*+++++ Index Page +++++*/
+.index-item {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  .index__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s ease;
+  }
+}
+
+.index-item:hover {
+  .index__title {
+    visibility: visible;
+    opacity: .8;
+    background: #fff;
+  }
+}
+
+/*+++++ Other +++++*/
 .borderless {
   tbody > tr > th,
   tbody > tr > td {

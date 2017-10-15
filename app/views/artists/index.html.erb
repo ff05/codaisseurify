@@ -1,9 +1,16 @@
-<h1 class="h1">Artists:</h1>
-<div class="row">
+<h1 class="h1 text-center">Artists</h1>
+<section class="index">
   <% @artists.each do |artist| %>
     <div class="col-sm-4">
-      <h3 class="text-center"><%= link_to artist.name, artist_path(artist) %></h3>
-      <%= image_tag artist.image_url.thumbnail %>
+      <%= link_to artist_path(artist) do %>
+        <div class="index-item" style="background-image: url('<%= artist.image_url %>')">
+
+          <div class="index__title">
+            <h3><%= artist.name%></h3>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to "[Delete]", artist_path(artist.id), class: "btn btn-link center-block", method: :delete, data: { confirm: "Are you sure?" } %>
     </div>
   <% end %>
-</div>
+</section>
