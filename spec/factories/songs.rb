@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :song do
-    name "MyString"
-    album "MyString"
-    release_year 1
+    name          Faker::Name.name
+    album         Faker::Name.name
+    release_year  Faker::Number.between(1, 2017)
   end
 end
