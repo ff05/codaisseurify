@@ -5,10 +5,10 @@ class SongsController < ApplicationController
   end
 
   def create
-    artist = Artist.find(params[:artist_id])
-    song = artist.songs.create(song_params)
-    if song.save
-      redirect_to artist, notice: "song created"
+    @artist = Artist.find(params[:artist_id])
+    @song = @artist.songs.create(song_params)
+    if @song.save
+      redirect_to @artist, notice: "song created"
     else
       render :new
     end
