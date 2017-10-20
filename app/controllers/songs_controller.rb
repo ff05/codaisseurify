@@ -19,9 +19,8 @@ class SongsController < ApplicationController
   end
 
   def destroy
-    song = @artist.songs.find(params[:id])
-    song.destroy
-
+    @song = @artist.songs.find(params[:id])
+    @song.destroy
     # redirect_to @artist
     render status: 200, json: {
       message: "Song deleted"
@@ -35,6 +34,6 @@ class SongsController < ApplicationController
   end
 
   def song_params
-    params.require(:song).permit(:name, :album, :release_year)
+    params.require(:song).permit(:id, :name, :album, :release_year)
   end
 end

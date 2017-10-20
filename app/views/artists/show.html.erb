@@ -25,19 +25,25 @@
             <th></th>
           </tr>
           <% @songs.each do |song| %>
-          <tr>
+          <tr data-id="<%= song.id %>">
             <td><p><%= song.name %></p></td>
             <td><p><%= song.album %></p></td>
             <td><p><%= song.release_year %></p></td>
-            <td id="del-button"><%= link_to "Delete", artist_song_path(@artist.id, song.id), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %></td>
+            <td><%= link_to "Delete", artist_song_path(@artist.id, song.id), class: "btn btn-default", id: "del-button" %></td>
           </tr>
           <% end %>
           <tr id="new-song-row">
 
-              <td><input type="text" placeholder="Song name" class="form-control" id="song-name"></td>
-              <td><input type="text" placeholder="Album" class="form-control" id="song-album"></td>
-              <td><input type="text" placeholder="Release year" class="form-control" id="song-year"></td>
-              <td><%= link_to "Add", new_artist_song_path(@artist), class: "btn btn-primary btn--incr-pad", id: "add-button", type: "submit" %></td>
+              <td class="song-field"><input type="text" placeholder="Song name" class="form-control" id="song-name"></td>
+              <td class="song-field"><input type="text" placeholder="Album" class="form-control" id="song-album"></td>
+              <td class="song-field"><input type="text" placeholder="Release year" class="form-control" id="song-year"></td>
+              <td class="song-field"><%= link_to "Add", new_artist_song_path(@artist), class: "btn btn-primary btn--incr-pad", id: "add-button", type: "submit" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="#" class="btn btn-danger" id="del-all-button">Delete All</a></td>
           </tr>
         </table>
       </form>

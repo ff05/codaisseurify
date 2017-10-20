@@ -13,14 +13,17 @@ RSpec.describe Artist, type: :model do
 
     it "has many songs" do
 
-      song1 = artist.songs.new(name: "FEBTGrgrheth", album: "fejfeikfj")
-      song2 = artist.songs.new(name: "jwfiegjeg", album: "fejfeikfj")
+      song1 = artist.songs.build(name: "FEBTGrgrheth", album: "fejfeikfj")
+      song2 = artist.songs.build(name: "jwfiegjeg", album: "fejfeikfj")
 
       expect(artist.songs).to include(song1)
       expect(artist.songs).to include(song2)
     end
 
+    it { should have_many(:songs).dependent(:destroy) }
+
     it "deletes associated songs" do
+
       expect { artist.destroy }.to change(Song, :count).by(-1)
     end
 

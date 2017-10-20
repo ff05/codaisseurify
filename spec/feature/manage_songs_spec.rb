@@ -1,16 +1,40 @@
 require 'rails_helper'
 
-describe "Managing songs" do
-  let(:artist) { create :artist }
-
-  it "adds a song" do
-    visit artist
+feature "Managing songs", js:true do
+  background do
+    visit artist_path(artist)
     fill_in 'song-name', with: 'A lovely song'
     fill_in 'song-album', with: 'A lovely album'
-    fill_in 'song-year', with: 'A lovely year'
-    page.execute_script("$('#add-button').click()")
+    fill_in 'song-year', with: '1950'
+  end
 
-    expect(page).to have_content('A lovely song')
+  let(:artist) { create :artist }
+
+  scenario "adds a song" do
+
+    find("#add-button").click
+
+    expect(page).to have_content('A lovely song', 'A lovely album', '1950')
+  end
+
+  scenario "deletes a song" do
+    find("#add-button").click
+    find("#del-button").click
+
+    expect(page).not_to have_content('A lovely song')
+  end
+
+  scenario "deletes all songs" do
+    find("#add-button").click
+
+    fill_in 'song-name', with: 'A lovely song2'
+    fill_in 'song-album', with: 'A lovely album2'
+    fill_in 'song-year', with: '1951'
+    find("#add-button").click
+
+    find("#del-all-button").click
+
+    expect(page).not_to have_content('A lovely song', 'A lovely song2')
   end
 end
 
