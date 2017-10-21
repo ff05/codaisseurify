@@ -1,7 +1,3 @@
-function nextSongId() {
-  return $(".song-field").size() + 1;
-}
-
 function addSong(name, album, year) {
   var newSong = {name: name, album: album, release_year: year}
 
@@ -18,7 +14,7 @@ function addSong(name, album, year) {
 
       var $delBtn = $('<a href="#" class="btn btn-default" id="del-button">Delete</a>');
 
-      var tableRow = $('<tr></tr>')
+      var tableRow = $('<tr class="song"></tr>')
         .attr('data-id', rowId)
         .append($('<td>').append($('<p>')).html(name))
         .append($('<td>').append($('<p>')).html(album))
@@ -39,9 +35,22 @@ function addSong(name, album, year) {
 function deleteSong(event) {
   event.preventDefault();
   var tableRow = $(this).parent().parent();
-  var songId = tableRow.data('id');
-  console.log(tableRow);
-  $.ajax({
+  songId = $(tableRow).data('id');
+  removeSong(songId);
+}
+
+function deleteAllSongs(event) {
+  event.preventDefault();
+  if (confirm("Are you sure you want to delete all the songs?")) {
+    $.each($(".song"), function(index, tableRow) {
+      songId = $(tableRow).data('id');
+      removeSong(songId);
+    });
+  }
+}
+
+function removeSong(songId) {
+    $.ajax({
     type: "DELETE",
     url: window.location.pathname + "/songs/" + songId + ".json",
     contentType: "application/json",
@@ -51,6 +60,7 @@ function deleteSong(event) {
     $('tr[data-id="'+songId+'"]').remove();
   });
 }
+
 
 function showError(message) {
   var errorHelpBlock = $('<span class="help-block"></span>')
@@ -86,7 +96,5 @@ function resetErrors() {
 $(document).ready(function() {
   $('#add-button').bind('click', saveSong );
   $('#del-button').bind('click', deleteSong );
+  $('#del-all-button').bind('click', deleteAllSongs );
 })
-// 1. Create form in artists#show
-// 2. get values and add to table
-// 3. add as row in songs table
