@@ -6,7 +6,7 @@ class ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find(params[:id])
-    @songs = @artist.songs
+    @songs = @artist.songs.sort_by_year
   end
 
   def destroy
