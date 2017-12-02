@@ -18,7 +18,7 @@ These are the steps I followed when working on this app:
 
 ## Database Structure
 
-2. Artist
+1. Artist
 
   * t.string :name
   * t.text :bio
