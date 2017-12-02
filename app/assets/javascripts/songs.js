@@ -28,14 +28,13 @@ function addSong(name, album, year) {
       for (var key in error.responseJSON.errors ){
         showError(error.responseJSON.errors[key]);
       };
-
     });
 }
 
 function deleteSong(event) {
   event.preventDefault();
   var tableRow = $(this).parent().parent();
-  songId = $(tableRow).data('id');
+  var songId = $(tableRow).data('id');
   removeSong(songId);
 }
 
